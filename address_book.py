@@ -1,5 +1,5 @@
 from collections import UserDict
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
 class AddressBook(UserDict):
 
@@ -22,7 +22,7 @@ class AddressBook(UserDict):
                 continue
 
             bd = record.birthday.value  # datetime
-            birthday_this_year = bd.replace(year=today.year).date()
+            birthday_this_year = datetime.strptime(bd, "%d.%m.%Y").replace(year=today.year).date()
 
             if birthday_this_year < today:
                 birthday_this_year = birthday_this_year.replace(year=today.year + 1)

@@ -18,14 +18,8 @@ class Phone(Field):
 
 class Birthday(Field):
     def __init__(self, value):
-        # Якщо передали рядок, намагаємося перетворити на об'єкт datetime
-        if isinstance(value, str):
-            try:
-                value = datetime.strptime(value, "%d.%m.%Y")
-            except ValueError:
-                raise ValueError("Invalid date format. Use DD.MM.YYYY")
-        # Перевіряємо якщо вже передали об'єкт datetime
-        elif not isinstance(value, datetime):
-            raise TypeError("Birthday must be a string or datetime object")
-
+        try:
+            datetime.strptime(value, "%d.%m.%Y")
+        except ValueError:
+            raise ValueError("Invalid date format. Use DD.MM.YYYY")
         super().__init__(value)

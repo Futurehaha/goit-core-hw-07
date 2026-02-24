@@ -38,4 +38,11 @@ class Record:
         return None
 
     def __str__(self):
-        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
+        phones_str = ", ".join(phone.value for phone in self.phones)
+
+        if self.birthday:
+            birthday_str = self.birthday
+        else:
+            birthday_str = "Birthday not added"
+
+        return f"Name: {self.name.value}, Phones: {phones_str}, Birthday: {birthday_str}"
